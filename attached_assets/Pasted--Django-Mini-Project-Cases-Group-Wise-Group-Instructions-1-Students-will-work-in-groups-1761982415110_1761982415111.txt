@@ -1,0 +1,53 @@
+ 
+
+Django Mini Project Cases (Group Wise)
+
+ Group Instructions:
+1.	Students will work in groups of 4 members (as assigned).
+2.	Group and Project topics are already allotted — no changes in group members or topics are allowed.
+3.	Each group must work only on their assigned project case from the given list.
+
+Submission Instructions:
+Project Submission Requirements
+1.	While submitting the mini-project, students are required to submit two components: the project itself and a hard copy of the project report.
+2.	 Students must showcase their project work on the specified submission date only.
+3.	 Any group that fails to present on the due date will have its marks reduced proportionally based on the delay.
+4.	 Late presentations without prior permission will get marks deducted, as decided by the faculty.
+
+Project Requirements
+Each project includes the following:
+1.	Login Page – Authentication (user login/logout).
+2.	Form Page – Accept user input (as per the assigned case).
+3.	Database Integration – Data must be stored in a model.
+4.	Display Page – Display all stored data from the database.
+5.	Templates and Static Files – Proper use of HTML, CSS, and Django Template Language.
+6.	Views – Use of Function-Based Views (FBV) or Class-Based Views (CBV).
+7.	URLs – Proper routing between pages using urls.py.
+8.	Admin Panel Access – Data should be viewable in Django admin.
+
+Project Report Guidelines: printed report of 10-15 pages, which contains :
+1. Cover Page
+Include the following:
+•	Institute Name
+•	Department Name
+•	Project Title
+•	Course Name 
+•	Group Members’ Names with Roll Numbers
+•	Submitted To (Faculty Name)
+•	Submission Date
+2. Project Details
+•	Project Title
+•	Brief Description / Abstract (3–5 lines explaining your project idea)
+•	Objective of the Project
+3. Workflow Diagram / Flowchart
+•	Show how data flows between pages (e.g., Login → Form → Display Page)
+•	Can be drawn digitally or neatly by hand
+4. Technologies Used
+•	List tools and technologies with version numbers
+
+5. Python Libraries Used (with Uses)                                                                                                                     considering this help me to make the project from extreme scratch on topic  =                                                    "16. Attendance Management System
+•	Form to mark attendance for each student.
+•	Display attendance summary on dashboard.
+•	Covers: Models, Templates, and CRUD.
+"
+
