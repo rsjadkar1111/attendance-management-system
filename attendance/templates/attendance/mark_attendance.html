@@ -1,0 +1,63 @@
+{% extends 'attendance/base.html' %}
+
+{% block title %}Mark Attendance - Attendance System{% endblock %}
+
+{% block content %}
+<div class="attendance-form">
+    <h1>Mark Attendance</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="date">Select Date: *</label>
+            <input type="date" id="date" name="date" value="{{ today|date:'Y-m-d' }}" required>
+        </div>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>Student Name</th>
+                        <th>Department</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.roll_number }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.department }}</td>
+                        <td>
+                            <select name="status_{{ student.id }}" required>
+                                <option value="">Select</option>
+                                <option value="Present">Present</option>
+                                <option value="Absent">Absent</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="remarks_{{ student.id }}" placeholder="Optional remarks">
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            No students found. <a href="{% url 'add_student' %}">Add students first</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        {% if students %}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit Attendance</button>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

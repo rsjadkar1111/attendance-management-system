@@ -1,0 +1,102 @@
+{% extends 'attendance/base.html' %}
+
+{% block title %}Dashboard - Attendance System{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Dashboard</h1>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Total Students</h3>
+            <p class="stat-number">{{ total_students }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Present Today</h3>
+            <p class="stat-number present">{{ present_today }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Absent Today</h3>
+            <p class="stat-number absent">{{ absent_today }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Date</h3>
+            <p class="stat-number">{{ today|date:"d M Y" }}</p>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Attendance Summary</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>Student Name</th>
+                        <th>Total Days</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in attendance_summary %}
+                    <tr>
+                        <td>{{ item.student.roll_number }}</td>
+                        <td>{{ item.student.name }}</td>
+                        <td>{{ item.total_days }}</td>
+                        <td class="present">{{ item.present_days }}</td>
+                        <td class="absent">{{ item.absent_days }}</td>
+                        <td>
+                            <span class="percentage {% if item.percentage >= 75 %}good{% elif item.percentage >= 50 %}warning{% else %}danger{% endif %}">
+                                {{ item.percentage }}%
+                            </span>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">No students found. Add students to get started.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Recent Attendance Records</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Roll Number</th>
+                        <th>Student Name</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for attendance in recent_attendance %}
+                    <tr>
+                        <td>{{ attendance.date|date:"d M Y" }}</td>
+                        <td>{{ attendance.student.roll_number }}</td>
+                        <td>{{ attendance.student.name }}</td>
+                        <td>
+                            <span class="status-badge {% if attendance.status == 'Present' %}present{% else %}absent{% endif %}">
+                                {{ attendance.status }}
+                            </span>
+                        </td>
+                        <td>{{ attendance.remarks|default:"—" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No attendance records found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
